@@ -8,6 +8,7 @@ use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Validation\Rules\Password;
 use Filament\Http\Middleware\Authenticate;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
@@ -51,9 +52,11 @@ class AdminPanelProvider extends PanelProvider
                         userMenuLabel: 'My Profile', // Customizes the 'account' link label in the panel User Menu (default = null)
                         shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
                         navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
-                        hasAvatars: false, // Enables the avatar upload form component (default = false)
+                        hasAvatars: true, // Enables the avatar upload form component (default = false)
                         slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     )
+                    ->avatarUploadComponent(fn($fileUpload) => $fileUpload->disableLabel())
+                    ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->image()->acceptedFileTypes(['image/png', 'image/jpeg', 'image/jpg'])->disk('public')->directory('avatars')->maxSize(1024)->label('Avatar'))
                     ->passwordUpdateRules(
                         rules: [Password::default()->mixedCase()->uncompromised(3)], // you may pass an array of validation rules as well. (default = ['min:8'])
                         requiresCurrentPassword: true, // when false, the user can update their password without entering their current password. (default = true)
