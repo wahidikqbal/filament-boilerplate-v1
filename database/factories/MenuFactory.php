@@ -25,6 +25,7 @@ class MenuFactory extends Factory
             'description' => $this->faker->sentence(),
             'price' => $price,
             'discount_price' => $this->faker->numberBetween(1000, $price - 1000),
+            'status' => $this->faker->randomElement(['available', 'out_of_stock']),
         ];
     }
 }
