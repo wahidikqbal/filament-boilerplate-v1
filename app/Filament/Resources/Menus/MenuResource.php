@@ -71,4 +71,21 @@ class MenuResource extends Resource
         $data['user_id'] = auth()->id(); // paksa ambil user login
         return $data;
     }
+
+    public static function mutateFormDataBeforeSave(array $data, $record): array
+    {
+        $data['user_id'] = auth()->id(); // paksa ambil user login
+        return $data;
+    }
+    
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (! auth()->user()->hasRole('super_admin')) {
+            $query->where('user_id', auth()->id());
+        }
+
+        return $query;
+    }
 }

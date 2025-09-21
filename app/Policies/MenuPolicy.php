@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class MenuPolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('ViewAny:Menu');
@@ -19,7 +19,10 @@ class MenuPolicy
 
     public function view(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('View:Menu');
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('View:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function create(AuthUser $authUser): bool
@@ -29,22 +32,35 @@ class MenuPolicy
 
     public function update(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('Update:Menu');
+
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('Update:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function delete(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('Delete:Menu');
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('Delete:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function restore(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('Restore:Menu');
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('Restore:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function forceDelete(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('ForceDelete:Menu');
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('ForceDelete:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
@@ -59,12 +75,14 @@ class MenuPolicy
 
     public function replicate(AuthUser $authUser, Menu $menu): bool
     {
-        return $authUser->can('Replicate:Menu');
+        if ($authUser->hasRole('super_admin')) {
+            return true;
+        }
+        return $authUser->can('Replicate:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function reorder(AuthUser $authUser): bool
     {
         return $authUser->can('Reorder:Menu');
     }
-
 }
