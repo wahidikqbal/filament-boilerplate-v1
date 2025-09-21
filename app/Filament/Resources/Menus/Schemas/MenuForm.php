@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Menus\Schemas;
 use Illuminate\Support\Str;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -26,6 +27,16 @@ class MenuForm
                     ->dehydrateStateUsing(fn($state) => Str::title($state))
                     ->extraInputAttributes(['style' => 'text-transform: capitalize'])
                     ->required(),
+                Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'available' => 'Available',
+                        'out_of_stock' => 'Out of Stock',
+                    ])
+                    ->required()
+                    ->default('available')
+                    ->native(false),
+
                 SpatieMediaLibraryFileUpload::make('menu_image')
                     ->collection('menus')
                     ->image()

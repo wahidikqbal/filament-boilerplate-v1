@@ -22,6 +22,7 @@ class Menu extends Model implements HasMedia
         'description',
         'price',
         'discount_price',
+        'status',
     ];
 
     public function user()

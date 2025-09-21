@@ -23,12 +23,19 @@ class MenuInfolist
                     ->collection('menus')
                     ->placeholder('-')
                     ->columnSpanFull(),
+                TextEntry::make('status')
+                    ->badge()
+                    ->colors([
+                        'success' => 'available',
+                        'danger' => 'out_of_stock',
+                    ])
+                    ->label('Status'),
                 TextEntry::make('price')
                     ->numeric()
-                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
+                    ->formatStateUsing(fn($state) => 'Rp ' . number_format($state, 0, ',', '.')),
                 TextEntry::make('discount_price')
                     ->numeric()
-                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.'))
+                    ->formatStateUsing(fn($state) => 'Rp ' . number_format($state, 0, ',', '.'))
                     ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
@@ -38,7 +45,7 @@ class MenuInfolist
                     ->placeholder('-'),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn (Menu $record): bool => $record->trashed()),
+                    ->visible(fn(Menu $record): bool => $record->trashed()),
             ]);
     }
 }

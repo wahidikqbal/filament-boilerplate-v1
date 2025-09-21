@@ -24,12 +24,19 @@ class MenusTable
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.'))
+                    ->formatStateUsing(fn($state) => 'Rp ' . number_format($state, 0, ',', '.'))
                     ->sortable(),
                 TextColumn::make('discount_price')
                     ->numeric()
-                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.'))
+                    ->formatStateUsing(fn($state) => 'Rp ' . number_format($state, 0, ',', '.'))
                     ->sortable(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->colors([
+                        'success' => 'available',
+                        'danger' => 'out_of_stock',
+                    ])
+                    ->label('Status'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
