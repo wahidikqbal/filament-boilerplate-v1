@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Models\Menu;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class MenuPolicy
+class MenuPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -19,9 +19,6 @@ class MenuPolicy
 
     public function view(AuthUser $authUser, Menu $menu): bool
     {
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('View:Menu') && $menu->user_id === $authUser->id;
     }
 
@@ -32,34 +29,21 @@ class MenuPolicy
 
     public function update(AuthUser $authUser, Menu $menu): bool
     {
-
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('Update:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function delete(AuthUser $authUser, Menu $menu): bool
     {
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('Delete:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function restore(AuthUser $authUser, Menu $menu): bool
     {
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('Restore:Menu') && $menu->user_id === $authUser->id;
     }
 
     public function forceDelete(AuthUser $authUser, Menu $menu): bool
     {
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('ForceDelete:Menu') && $menu->user_id === $authUser->id;
     }
 
@@ -75,9 +59,6 @@ class MenuPolicy
 
     public function replicate(AuthUser $authUser, Menu $menu): bool
     {
-        if ($authUser->hasRole('super_admin')) {
-            return true;
-        }
         return $authUser->can('Replicate:Menu') && $menu->user_id === $authUser->id;
     }
 
