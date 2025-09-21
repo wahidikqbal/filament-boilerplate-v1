@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use Filament\Infolists\Components\ImageEntry;
-use Filament\Infolists\Components\TextEntry;
+use Dom\Text;
 use Filament\Schemas\Schema;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 
 class UserInfolist
 {
@@ -19,6 +21,10 @@ class UserInfolist
                     ->label('Halaman'),
                 TextEntry::make('email_verified_at')
                     ->dateTime()
+                    ->placeholder('-'),
+                TextEntry::make('roles')
+                    ->label('Roles')
+                    ->getStateUsing(fn($record) => $record->roles->pluck('name')->map(fn($name) => ucwords($name))->join(', '))
                     ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()

@@ -2,13 +2,14 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Table;
 
 class UsersTable
 {
@@ -24,6 +25,12 @@ class UsersTable
                 TextColumn::make('slug')
                     ->label('Halaman')
                     ->searchable(),
+                BadgeColumn::make('roles')
+                    ->label('Roles')
+                    ->getStateUsing(fn($record) => $record->roles->pluck('name')->map(fn($name) => ucwords($name))->toArray())
+                    ->colors([
+                        'primary',
+                    ]),
                 TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable()
@@ -37,7 +44,7 @@ class UsersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 ImageColumn::make('avatar')
-                    ->getStateUsing(fn ($record) => $record->avatar_url ? asset('storage/' . $record->avatar_url) : null)
+                    ->getStateUsing(fn($record) => $record->avatar_url ? asset('storage/' . $record->avatar_url) : null)
                     ->searchable(),
             ])
             ->filters([

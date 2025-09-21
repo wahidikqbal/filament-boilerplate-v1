@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
 use Filament\Actions\Action;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DateTimePicker;
 
 
@@ -42,6 +42,14 @@ class UserForm
                     ->placeholder('example@mail.com')
                     ->email()
                     ->required(),
+                Select::make('roles')
+                    ->label('Roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->getOptionLabelFromRecordUsing(fn($record) => Str::title($record->name)),
+
                 DateTimePicker::make('email_verified_at')
                     ->nullable()
                     ->default(null),
