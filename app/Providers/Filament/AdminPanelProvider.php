@@ -36,6 +36,10 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->brandName('MIE GACOAN')
+            // ->brandLogo(asset('images/MieGacoan.svg'))
+            ->brandLogo(fn () => view('filament.components.custom-brand'))
+            ->brandLogoHeight('4rem')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
