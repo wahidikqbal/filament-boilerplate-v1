@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources\Menus\Tables;
 
+use Filament\Tables\Table;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
-use Filament\Tables\Table;
+use Filament\Actions\ForceDeleteBulkAction;
 
 class MenusTable
 {
@@ -51,7 +52,13 @@ class MenusTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                TrashedFilter::make(),
+                // TrashedFilter::make(), // kalau mau pakai soft delete
+                SelectFilter::make('status')
+                ->label('Status')
+                ->options([
+                    'available' => 'Available',
+                    'out_of_stock' => 'Out of Stock',
+                ]),
             ])
             ->recordActions([
                 ViewAction::make(),
