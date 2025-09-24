@@ -21,8 +21,8 @@
                     </div>
                 </div>
             </div>
-            <h3 class="my-4 text-center text-3xl font-semibold text-gray-700">Congratuation!!!</h3>
-            <p class="w-[230px] text-center font-normal text-gray-600">Your tailwind project will be started</p>
+            <h3 class="my-4 text-center text-3xl font-semibold text-gray-700">Congratuation {{ $user->name }} !!!</h3>
+            <p class="w-full text-center font-normal text-gray-600">Your tailwind project will be started {{$user->email}} </p>
             <button class="mx-auto mt-10 block rounded-xl border-4 border-transparent bg-orange-400 px-6 py-3 text-center text-base font-medium text-orange-100 outline-8 hover:outline hover:duration-300">Track Order</button>
         </div>
     </div>

@@ -11,3 +11,12 @@ Route::get('/home', function () {
 Route::get('/form', function () {
     return view('form');
 });
+
+// Route::get('/{user:slug}', function (\App\Models\User $user) {
+//     return view('form', ['user' => $user]);
+// })->name('form');
+
+Route::get('/{slug}', function ($slug) {
+    $user = \App\Models\User::where('slug', $slug)->firstOrFail();
+    return view('form', compact('user'));
+});
