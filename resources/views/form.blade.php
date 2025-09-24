@@ -15,7 +15,7 @@
     <x-hero></x-hero>
     <!-- HERO COMPONENT END -->
 
-    <div class="my-12 text-center">
+    <div class="my-6 text-center">
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
             🍽️ Menu Kami
         </h2>

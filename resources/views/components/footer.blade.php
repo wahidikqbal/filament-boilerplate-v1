@@ -1,9 +1,9 @@
 <!-- Footer -->
-<footer class="bg-neutral-900 text-white py-8">
-    <div class="container mx-auto px-4 text-center space-y-4">
+<footer class="bg-neutral-900 text-white py-4">
+    <div class="container mx-auto px-4 text-center space-y-2">
         <h2 class="text-xl font-semibold">Rumah Makan Nusantara</h2>
         <p class="text-sm text-gray-300">Melayani dengan sepenuh hati sejak 1995</p>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-gray-200">
+        <div class="flex flex-row md:flex-row justify-center items-center gap-2 text-sm text-gray-200">
             <!-- Telepon -->
             <div class="flex items-center gap-2">
                 <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 24 24">
@@ -13,7 +13,7 @@
             </div>
 
             <!-- Email -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 hidden sm:flex">
                 <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M4 4h16a2 2 0 012 2v1.5l-10 6.25L2 7.5V6a2 2 0 012-2zM2 8.5l10 6.25L22 8.5V18a2 2 0 01-2 2H4a2 2 0 01-2-2V8.5z"/>
                 </svg>
