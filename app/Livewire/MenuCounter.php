@@ -14,22 +14,22 @@ class MenuCounter extends Component
 
     public $form = [
         'nama' => '',
-        'hp' => '',
+        // 'hp' => '',
         'tipe' => 'Dine In',
     ];
 
     protected $rules = [
         'form.nama' => ['required', 'regex:/^[A-Z][a-zA-Z\s]*$/'],
-        'form.hp' => ['required', 'digits_between:10,15', 'regex:/^[0-9]+$/'],
+        // 'form.hp' => ['required', 'digits_between:10,15', 'regex:/^[0-9]+$/'],
         'form.tipe' => ['required', 'in:Dine In,Take Away'],
     ];
 
     protected $messages = [
         'form.nama.required' => 'Nama pemesan wajib diisi.',
         'form.nama.regex' => 'Gunakan huruf saja dan huruf pertama harus kapital.',
-        'form.hp.required' => 'Nomor HP wajib diisi.',
-        'form.hp.regex' => 'Nomor HP hanya boleh angka.',
-        'form.hp.digits_between' => 'Nomor HP harus 10–15 digit.',
+        // 'form.hp.required' => 'Nomor HP wajib diisi.',
+        // 'form.hp.regex' => 'Nomor HP hanya boleh angka.',
+        // 'form.hp.digits_between' => 'Nomor HP harus 10–15 digit.',
         'form.tipe.required' => 'Silakan pilih tipe pesanan.',
     ];
 
@@ -92,7 +92,7 @@ class MenuCounter extends Component
         $pesan .= "\nTotal: *Rp" . number_format($this->total, 0, ',', '.') . "*";
         $pesan .= "\n\n📋 *Data Pemesan:*\n";
         $pesan .= "👤 Nama: {$this->form['nama']}\n";
-        $pesan .= "📱 Nomor HP: {$this->form['hp']}\n";
+        // $pesan .= "📱 Nomor HP: {$this->form['hp']}\n";
         $pesan .= "🍽️ Tipe Pesanan: {$this->form['tipe']}";
 
         $encoded = urlencode($pesan);
