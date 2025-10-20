@@ -30,7 +30,7 @@
         document.addEventListener('livewire:initialized', () => {
             Livewire.on('swal', (data) => {
                 Swal.fire({
-                    title: data.title || 'Keranjang Kosong',
+                    title: data.title || 'Ooops!',
                     text: data.text || 'Pesanan Anda Masih Kosong.',
                     icon: data.icon || 'info',
                     confirmButtonColor: '#10b981', // hijau lembut

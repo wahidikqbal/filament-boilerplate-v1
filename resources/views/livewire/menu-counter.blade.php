@@ -1,16 +1,16 @@
-<div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6 pb-28 relative justify-center mx-auto mt-8">
+<div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6 pb-28 relative justify-center mx-auto">
     <!-- Avatar dan nama user -->
-    <div class="flex justify-center mb-4">
+    <div class="flex justify-center mb-2">
         <img src="{{ asset('storage/' . $user->avatar_url) }}" alt="{{ $user->name }}"
-            class="w-16 h-16 rounded-full object-cover shadow" />
+            class="w-14 h-14 rounded-full object-cover shadow" />
     </div>
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+    <h2 class="text-md font-bold text-center text-gray-800 mb-2">
         🛒 Form Order <span class="text-[#ec008d]">{{ strtoupper($user->name) }}</span>
     </h2>
 
     <!-- Form Pemesan -->
-    <section class="mb-6 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+    <section class="mb-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="space-y-4">
             {{-- Nama Pemesan --}}
             <div>
@@ -30,7 +30,7 @@
             </div>
 
             {{-- Nomor HP --}}
-            <div>
+            {{-- <div>
                 <label class="block text-gray-700 font-medium mb-1">Nomor HP</label>
                 <input wire:model.lazy="form.hp" type="text" placeholder="081234567890"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="15"
@@ -39,7 +39,7 @@
                 @error('form.hp')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
 
             {{-- Tipe Pesanan --}}
             <div>
