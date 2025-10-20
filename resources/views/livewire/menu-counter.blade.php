@@ -20,10 +20,11 @@
                     .replace(/[^a-zA-Z\s]/g, '')
                     .replace(/\b\w/g, c => c.toUpperCase())"
                     class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-green-400
-                    @error('form.nama') border-red-400 focus:ring-red-300
-                @else
-                border-gray-300
-                @enderror" />
+                    @error('form.nama')
+border-red-400 focus:ring-red-300
+@else
+border-gray-300
+@enderror" />
                 @error('form.nama')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -42,19 +43,30 @@
             </div> --}}
 
             {{-- Tipe Pesanan --}}
-            <div>
-                <label class="block text-gray-700 font-medium mb-1">Tipe Pesanan</label>
-                <select wire:model.lazy="form.tipe"
-                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-green-400
-                    @error('form.tipe') border-red-400 focus:ring-red-300 @else border-gray-300 @enderror">
-                    <option value="">-- Pilih Tipe Pesanan --</option>
-                    <option value="Dine In">Dine In</option>
-                    <option value="Take Away">Take Away</option>
-                </select>
+            <div class="relative">
+                <label class="block text-gray-700 font-semibold mb-2">Tipe Pesanan</label>
+                <div class="relative">
+                    <select wire:model.lazy="form.tipe"
+                        class="peer w-full appearance-none rounded-xl border bg-white px-4 py-3 pr-10 text-gray-700
+                   shadow-sm transition-all duration-150 ease-in-out
+                   focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400
+                   @error('form.tipe') border-red-400 focus:ring-red-300 @else border-gray-300 @enderror">
+                        <option value="Dine In">🍽️ Dine In</option>
+                        <option value="Take Away">🥡 Take Away</option>
+                    </select>
+
+                    <!-- Icon dropdown -->
+                    <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 peer-focus:text-green-500"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+
                 @error('form.tipe')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
+
         </div>
     </section>
 
