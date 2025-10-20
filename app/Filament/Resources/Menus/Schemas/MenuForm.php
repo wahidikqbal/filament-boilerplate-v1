@@ -42,6 +42,7 @@ class MenuForm
                     ->image()
                     ->maxSize(1024)
                     ->preserveFilenames()
+                    ->visibility('public')
                     ->columnSpanFull(),
                 Textarea::make('description')
                     ->default(null)
