@@ -13,22 +13,36 @@
     <section class="mb-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="space-y-4">
             {{-- Nama Pemesan --}}
-            <div>
-                <label class="block text-gray-700 font-medium mb-1">Nama Pemesan</label>
-                <input wire:model.lazy="form.nama" type="text" placeholder="Nama Kamu"
-                    oninput="this.value = this.value
-                    .replace(/[^a-zA-Z\s]/g, '')
-                    .replace(/\b\w/g, c => c.toUpperCase())"
-                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-green-400
-                    @error('form.nama')
+            <div class="relative">
+                <label class="block text-gray-700 font-semibold mb-2">Nama Pemesan</label>
+                <div class="relative">
+                    <!-- Icon user -->
+                    <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 peer-focus:text-green-500"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+
+                    <!-- Input -->
+                    <input wire:model.lazy="form.nama" type="text" placeholder="Masukkan nama kamu"
+                        oninput="this.value = this.value
+                .replace(/[^a-zA-Z\s]/g, '')
+                .replace(/\b\w/g, c => c.toUpperCase())"
+                        class="peer w-full rounded-xl border bg-white pl-10 pr-4 py-3 text-gray-700
+                   shadow-sm placeholder-gray-400 transition-all duration-150 ease-in-out
+                   focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400
+                   @error('form.nama')
 border-red-400 focus:ring-red-300
 @else
 border-gray-300
 @enderror" />
+                </div>
+
                 @error('form.nama')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
+
 
             {{-- Nomor HP --}}
             {{-- <div>
